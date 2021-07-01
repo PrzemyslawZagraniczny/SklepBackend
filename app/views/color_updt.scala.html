@@ -1,0 +1,31 @@
+@(colors: Seq[Color])
+
+@main("Sklep - projekt") {
+
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nazwa</th>
+            <th>Kategoria</th>
+            <th>Cena</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(color <- colors) {
+
+            <tr>
+
+                    <td>@color.id</td>
+                    <td>@color.name</td>
+                    <td>@color.value</td>
+                    <td> <a href=@routes.ColorController.updateColor(color.id)>Aktualizuj</a></td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

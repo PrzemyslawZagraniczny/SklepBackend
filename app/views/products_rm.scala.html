@@ -1,0 +1,30 @@
+@(products: Seq[Product])
+
+@main("Sklep - projekt") {
+
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nazwa</th>
+            <th>Kategoria</th>
+            <th>Cena</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(product <- products) {
+
+            <tr>
+
+                    <td>@product.id</td>
+                    <td>@product.name</td>
+                    <td>@product.category</td>
+                    <td>@(product.price/100.0) PLN</td>
+                    <td> <a href=@routes.ProductController.delProduct(product.id)>Usuń</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

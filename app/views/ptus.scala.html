@@ -1,0 +1,30 @@
+@import play.api.mvc.Flash
+
+@(ptus: Seq[PTU])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Podatki VAT")</h3>
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nazwa</th>
+            <th>Wartość [%]</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(ptu <- ptus) {
+
+            <tr>
+                <td>@ptu.id</td>
+                <td>@ptu.name</td>
+                <td>@ptu.value</td>
+                <td> <a href=@routes.PTUController.getPTU(ptu.id)>Szczegóły</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

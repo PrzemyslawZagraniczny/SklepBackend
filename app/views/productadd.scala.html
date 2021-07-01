@@ -1,0 +1,47 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+
+@(product: Form[CreateProductForm],category: Seq[Category], color: Seq[Color])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+@helper.CSRF.formField
+
+
+@main("Sklep - projekt") {
+
+
+
+@form(helper.CSRF(routes.ProductController.addProductHandle)) {
+
+@inputText(product("name"))
+@inputText(product("description"))
+@inputText(product("price"))
+<!--domyślnie bez promocji. Dodać zniżki można przez aktualizuj-->
+<input name="discount" id="discount" type="hidden" value=0 />
+<div>
+<label for="color"> Kolor:</label>
+  <select name="color" id="color">
+    @println(color)
+    @for(c <- color){
+    @println(c)
+    <option value="@c.id" >@c.name</option>
+    }
+  </select>
+</div>
+<div>
+  <label for="category"> Kategoria:</label>
+  <select name="category" id="category">
+    @for(cat <- category){
+    <option value="@cat.id">@cat.name</option>
+    }
+  </select>
+
+</div>
+
+  <div class="buttons">
+    <input type="submit" value="Add Product"/>
+  </div>
+  }
+}

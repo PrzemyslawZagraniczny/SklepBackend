@@ -1,0 +1,12 @@
+@(basket: Basket)
+
+@main("Sklep - projekt") {
+
+<dev class="detail">
+      <p>@basket.product</p>
+      @basket.session
+      <p><b>@(basket.pieces)</b></p>
+</dev>
+
+
+}

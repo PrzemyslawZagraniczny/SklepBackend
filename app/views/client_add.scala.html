@@ -1,0 +1,26 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+
+@(client: Form[CreateClientForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+@helper.CSRF.formField
+
+
+@main("Sklep - projekt") {
+
+
+
+@form(helper.CSRF(routes.ClientController.addClientHandle)) {
+
+@inputText(client("firstName"))
+@inputText(client("lastName"))
+@inputText(client("nip"))
+
+  <div class="buttons">
+    <input type="submit" value="Dodaj klienta"/>
+  </div>
+  }
+}

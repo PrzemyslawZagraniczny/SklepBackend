@@ -1,0 +1,28 @@
+@import play.api.mvc.Flash
+
+@(sizes: Seq[Size])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Lista kategorii")</h3>
+
+<table class="produkty">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Rozmiar EU</th>
+        <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(size <- sizes) {
+
+    <tr>
+        <td>@size.id</td>
+        <td>@(size.size/10)</td>
+        <td> <a href=@routes.SizeController.delSize(size.id)>Usuń</a></td>
+    </tr>
+
+    }
+    </tbody>
+</table>
+}

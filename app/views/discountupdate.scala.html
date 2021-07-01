@@ -1,0 +1,26 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(discount: Form[UpdateDiscountForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+    @form((routes.DiscountController.updateDiscountHandle)) {
+
+    @helper.CSRF.formField
+    <input name="id" id="id" value=@discount("id") type="hidden" />
+    @inputText(discount("name"))
+    @inputText(discount("value"))
+
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj"/>
+    </div>
+    }
+}
+
+

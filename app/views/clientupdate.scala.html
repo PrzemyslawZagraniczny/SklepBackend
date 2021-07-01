@@ -1,0 +1,27 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(client: Form[UpdateClientForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+    @form((routes.ClientController.updateClientHandle)) {
+
+    @helper.CSRF.formField
+    <input name="id" id="id" value=@client("id").value type="hidden" />
+    @inputText(client("firstName"))
+    @inputText(client("lastName"))
+    @inputText(client("nip"))
+
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj dane"/>
+    </div>
+    }
+}
+
+

@@ -1,0 +1,25 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+
+@(size: Form[CreateSizeForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+@helper.CSRF.formField
+
+
+@main("Sklep - projekt") {
+
+
+
+@form(routes.SizeController.addSizeHandle) {
+
+@inputText(size("size"))
+
+
+  <div class="buttons">
+    <input type="submit" value="Dodaj Rozmiar"/>
+  </div>
+  }
+}

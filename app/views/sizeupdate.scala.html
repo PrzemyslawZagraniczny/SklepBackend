@@ -1,0 +1,25 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(size: Form[UpdateSizeForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+    @form((routes.SizeController.updateSizeHandle)) {
+
+    @helper.CSRF.formField
+    <input name="id" id="id" value=@size("id") type="hidden" />
+@inputText(size("size"))
+
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj"/>
+    </div>
+    }
+}
+
+

@@ -1,0 +1,48 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(product: Form[UpdateProductForm],category: Seq[Category], discount: Seq[Discount])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+
+@form((routes.ProductController.updateProductHandle)) {
+@helper.CSRF.formField
+
+    <input name="id" id="id" value=@product("id").value type="hidden" />
+<!--    nie zmienamy koloru-->
+    <input name="color" id="color" type="hidden" value=@product("color").value />
+    @inputText(product("name"))
+    @inputText(product("description"))
+    @inputText(product("price"))
+
+    <select name="category" id="category">
+        @for(cat <- category){
+            @if(cat.id.toString==product("category").value.getOrElse(0)) {
+                <option value="@cat.id" selected>@cat.name</option>
+            }else{
+                <option value="@cat.id">@cat.name</option>
+            }
+        }
+    </select>
+    <select name="discount" id="discount">
+        @for(dis <- discount){
+            @if(dis.id.toString==product("category").value.getOrElse(0)) {
+                <option value="@dis.id" selected>@dis.name</option>
+            }else{
+                <option value="@dis.id">@dis.name</option>
+            }
+        }
+    </select>
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj"/>
+    </div>
+    }
+}
+
+

@@ -1,0 +1,35 @@
+@import play.api.mvc.Flash
+
+@(stocks: Seq[(Stock, Product, Size)])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Skład magazynu - rozwinięcie wartości kluczy")</h3>
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Produkt</th>
+            <th>Opis produktu</th>
+            <th>Rozmiar EU</th>
+            <th>Sztuk</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(stock <- stocks) {
+            <tr>
+                <td>@stock._1.id</td>
+                <td>@stock._2.name</td>
+                <td style="font-size: 0.8em">@stock._2.description</td>
+                @if(stock._3.size <= 0) {
+                    <td>-</td>
+                }else {
+                    <td>@(stock._3.size/10.0)</td>
+                }
+                <td style="font-size: 2.0em">@stock._1.pieces</td>
+<!--                <td> <a href=@routes.StockController.getStock(stock._1.id)>Szczegóły</a></td>-->
+            </tr>
+        }
+    </tbody>
+</table>
+}

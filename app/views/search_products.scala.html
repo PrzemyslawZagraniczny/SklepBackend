@@ -1,0 +1,39 @@
+@import play.api.mvc.Flash
+
+@(products: Seq[(Product, Category, Color, Discount)])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Lista produktów")</h3>
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nazwa</th>
+            <th>Kategoria</th>
+            <th>Kolor</th>
+            <th>Cena</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(product <- products) {
+            <tr>
+                    <td>@product._1.id</td>
+                    <td>@product._1.name</td>
+                    <td>@product._2.name</td>
+                    <td style="color: @product._3.value">@product._3.name</td>
+                @if(product._4.value > 0) {
+                    <td><p><b>PROMOCJA!</b> @product._4.name</p>
+                        <span class="stara_cena">@((product._1.price/100.0).round )</span><span class="nowa_cena"> @((product._1.price/100.0 * (1 - product._4.value/100.0)).round  ) PLN</span></td>
+                }else {
+                    <td><span>@((product._1.price/100.0).round ) PLN</span></td>
+                }
+                    <td> <a href=@routes.BasketController.addProduct(product._1.id, 1)>Dodaj do koszyka</a></td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

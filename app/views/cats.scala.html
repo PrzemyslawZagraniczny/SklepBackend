@@ -1,0 +1,30 @@
+@import play.api.mvc.Flash
+
+@(cats: Seq[Category])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Lista kategorii")</h3>
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(cat <- cats) {
+
+            <tr>
+                <td>@cat.id</td>
+                <td>@cat.name</td>
+                <td>@cat.description</td>
+                <td> <a href=@routes.CategoryController.getCat(cat.id)>Szczegóły</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

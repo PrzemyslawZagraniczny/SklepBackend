@@ -1,0 +1,30 @@
+@import play.api.mvc.Flash
+
+@(colors: Seq[Color])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Lista kolorów")</h3>
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nazwa</th>
+            <th>Wartość</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(color <- colors) {
+
+            <tr>
+                <td>@color.id</td>
+                <td>@color.name</td>
+                <td>@color.value</td>
+                <td> <a href=@routes.ColorController.getColor(color.id)>Szczegóły</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

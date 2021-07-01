@@ -1,0 +1,32 @@
+@import play.api.mvc.Flash
+
+@(clients: Seq[Client])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Lista klientów")</h3>
+
+<table class="produkty">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>NIP</th>
+        <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(client <- clients) {
+
+    <tr>
+        <td>@client.id</td>
+        <td>@client.firstName</td>
+        <td>@client.lastName</td>
+        <td>@client.nip</td>
+        <td> <a href=@routes.ClientController.updateClient(client.id)>Aktualizuj</a></td>
+    </tr>
+
+    }
+    </tbody>
+</table>
+}

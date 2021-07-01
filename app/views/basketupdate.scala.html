@@ -1,0 +1,33 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(basket: Form[UpdateBasketForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+    @form((routes.BasketController.updateBasketHandle)) {
+
+    @helper.CSRF.formField
+
+<h3> Aktualizuj liczbę sztuk</h3>
+    <input name="id" id="id" value=@basket("id").value type="hidden" />
+    <input name="product" id="product" value=@basket("product").value type="hidden" />
+    <input name="size" id="size" value=@basket("size").value type="hidden" />
+
+<!--        <label for="pieces"> Sztuk:</label>-->
+        @inputText(basket("pieces"))
+
+
+
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj"/>
+    </div>
+    }
+}
+
+

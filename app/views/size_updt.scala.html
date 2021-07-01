@@ -1,0 +1,25 @@
+@(sizes: Seq[Size])
+
+@main("Sklep - projekt") {
+    <table class="produkty">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Rozmiar EU</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(size <- sizes) {
+
+                <tr>
+                       <td>@size.id</td>
+                        <td>@(size.size/10)</td>
+                        <td> <a href=@routes.SizeController.updateSize(size.id)>Aktualizuj</a></td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}

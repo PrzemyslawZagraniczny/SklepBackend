@@ -1,0 +1,87 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>@title</title>
+
+        <meta charset = "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <link rel="stylesheet"   type="text/css" href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")">
+        <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel="stylesheet">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="@routes.Assets.versioned("javascripts/bootstrap.min.js")"></script>
+
+    </head>
+    <body class="tlo">
+    <div class="row tlo">
+        <div id="menu"  class="col-xs-12 col-md-12 col-lg-10 col-lg-offset-1 obwodka">
+            <div class="btn-group">
+                <a href= @routes.ProductController.getProducts class="btn btn-menu" id="mainPage">
+                    Strona główna
+                </a>
+                <a class="btn btn-menu" id="szukaj_produkt" href = @routes.SearchController.filterProducts >
+                    Sklep
+                </a>
+                <a class="btn btn-menu" id="kosztk" href = @routes.BasketController.getBasketRm >
+                    Koszyk
+                </a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-menu" id="produkty_list" href = @routes.ProductController.getProducts >
+                    Lista produktów
+                </a>
+                <a class="btn btn-menu" id="dodaj_produkt" href = @routes.ProductController.addProduct >
+                    Dodaj produkt
+                </a>
+                <a class="btn btn-menu" id="delete_produkt" href = @routes.ProductController.getProductsRm >
+                    Usuń produkt
+                </a>
+                <a class="btn btn-menu" id="aktualizuj_produkt" href = @routes.ProductController.getProductsUpdate >
+                    Aktualizuj produkt
+                </a>
+<!--                <a class="btn btn-menu" id="kats_list" href = @routes.CategoryController.getCats >-->
+<!--                    Lista kategorii-->
+<!--                </a>-->
+<!--                <a class="btn btn-menu" id="delete_cat" href = @routes.CategoryController.getCatsRm >-->
+<!--                    Usuń kategorię-->
+<!--                </a>-->
+<!--                <a class="btn btn-menu" id="dodaj_kat" href = @routes.CategoryController.addCategory >-->
+<!--                    Dodaj kategorię-->
+<!--                </a>-->
+                <a class="btn btn-menu" id="stock_list" href = @routes.StockController.getStocks >
+                    Stan magazynu
+                </a>
+                <a class="btn btn-menu" id="stock_update" href = @routes.StockController.getStockUpdate >
+                    Aktualizj Stan magazynu
+                </a>
+                <a class="btn btn-menu" id="stock_rm" href = @routes.StockController.getStockRm>
+                    Usuń z magazynu
+                </a>
+
+                <a class="btn btn-menu" id="aktualizuj_cat" href = @routes.CategoryController.getCategoryUpdate >
+                    Aktualizuj kategorię
+                </a>
+
+
+
+            </div>
+
+        </div>
+    </div>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+        @content
+
+      <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
+    </body>
+</html>

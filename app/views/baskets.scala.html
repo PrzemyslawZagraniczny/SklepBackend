@@ -1,0 +1,27 @@
+@import play.api.mvc.Flash
+
+@(baskets: Seq[(Basket, Product)])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Zawartość koszyka")</h3>
+
+<table class="produkty">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Produkt</th>
+            <th>Opis produktu</th>
+            <th>Sztuk</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(basket <- baskets) {
+            <tr>
+                <td>@basket._1.id</td>
+                <td>@basket._2.name</td>
+                 <td style="font-size: 2.0em">@basket._1.pieces</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

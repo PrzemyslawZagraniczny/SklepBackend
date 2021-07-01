@@ -1,0 +1,25 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+
+@(color: Form[CreateColorForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+@helper.CSRF.formField
+
+
+@main("Sklep - projekt") {
+
+
+
+@form(helper.CSRF(routes.ColorController.addColorHandle)) {
+
+@inputText(color("name"))
+@inputText(color("value"))
+
+  <div class="buttons">
+    <input type="submit" value="Dodaj kolor"/>
+  </div>
+  }
+}

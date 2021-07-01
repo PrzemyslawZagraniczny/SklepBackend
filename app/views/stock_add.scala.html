@@ -1,0 +1,27 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+
+@(stock: Form[CreateStockForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+@helper.CSRF.formField
+
+
+@main("Sklep - projekt") {
+
+
+
+@form(routes.StockController.addStockHandle) {
+<p> TODO: dodawanie produktów i rozmiarów z listy</p>
+
+@inputText(stock("product"))
+@inputText(stock("size"))
+@inputText(stock("pieces"))
+
+  <div class="buttons">
+    <input type="submit" value="Dodaj Product do magazynu"/>
+  </div>
+  }
+}

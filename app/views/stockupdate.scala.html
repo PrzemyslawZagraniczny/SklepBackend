@@ -1,0 +1,33 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(stock: Form[UpdateStockForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+    @form((routes.StockController.updateStockHandle)) {
+
+    @helper.CSRF.formField
+
+<h3> Aktualizuj liczbę sztuk</h3>
+    <input name="id" id="id" value=@stock("id").value type="hidden" />
+    <input name="product" id="product" value=@stock("product").value type="hidden" />
+    <input name="size" id="size" value=@stock("size").value type="hidden" />
+
+<!--        <label for="pieces"> Sztuk:</label>-->
+        @inputText(stock("pieces"))
+
+
+
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj"/>
+    </div>
+    }
+}
+
+

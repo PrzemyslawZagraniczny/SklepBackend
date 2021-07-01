@@ -1,0 +1,26 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+@import helper._
+@import helper.CSRF
+
+@(color: Form[UpdateColorForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+
+@main("Sklep - projekt") {
+
+    @form((routes.ColorController.updateColorHandle)) {
+
+    @helper.CSRF.formField
+    <input name="id" id="id" value=@color("id") type="hidden" />
+    @inputText(color("name"))
+    @inputText(color("value"))
+
+    <div class="buttons">
+        <input type="submit" value="Aktualizuj"/>
+    </div>
+    }
+}
+
+

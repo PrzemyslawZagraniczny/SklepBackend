@@ -1,0 +1,25 @@
+@import play.api.mvc.MessagesRequestHeader
+@import play.api.mvc.Flash
+@import play.api.data.Forms._
+@import play.api.data.Form
+
+@(discount: Form[CreateDiscountForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+@helper.CSRF.formField
+
+
+@main("Sklep - projekt") {
+
+
+
+@form(helper.CSRF(routes.DiscountController.addDiscountHandle)) {
+
+@inputText(discount("name"))
+@inputText(discount("value"))
+
+  <div class="buttons">
+    <input type="submit" value="Dodaj promocje"/>
+  </div>
+  }
+}

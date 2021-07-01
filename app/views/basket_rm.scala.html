@@ -1,0 +1,35 @@
+@(baskets: Seq[(Basket, Product)])(implicit flash: play.api.mvc.Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Skład magazynu - rozwinięcie wartości kluczy")</h3>
+
+<table class="produkty">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Produkt</th>
+        <th>Opis produktu</th>
+        <th>Sztuk</th>
+<!--        <th colspan="2">Akcja</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    @for(basket <- baskets) {
+        @if(basket._1.pieces > 0) {
+
+            <tr>
+                <td>@basket._1.id</td>
+                <td>@basket._2.name</td>
+                <td style="font-size: 0.8em">@basket._2.description</td>
+                <td style="font-size: 2.0em">@basket._1.pieces</td>
+<!--                <td> <a href=@routes.BasketController.delBasketOnePiece(basket._1.id)>Usuń sztukę</a></td>-->
+<!--                <td> <a href=@routes.BasketController.delBasket(basket._1.id)>Usuń pozycję</a></td>-->
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+}
+
+
+

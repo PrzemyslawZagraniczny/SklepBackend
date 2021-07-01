@@ -1,0 +1,30 @@
+@import play.api.mvc.Flash
+
+@(discounts: Seq[Discount])(implicit flash: Flash)
+
+@main("Sklep - projekt") {
+<h3 class="info">@flash.get("success").getOrElse("Lista kategorii")</h3>
+
+<table class="produkty">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Nazwa</th>
+        <th>Wartość[%]</th>
+        <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(discount <- discounts) {
+
+    <tr>
+        <td>@discount.id</td>
+        <td>@discount.name</td>
+        <td>@discount.value %</td>
+        <td> <a href=@routes.DiscountController.delDiscount(discount.id)>Usuń</a></td>
+    </tr>
+
+    }
+    </tbody>
+</table>
+}
