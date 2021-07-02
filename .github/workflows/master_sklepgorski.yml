@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_0f9d0996442748848a86cd75990ed635 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_ea426f6383cc42219a8517ad5359d826 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_92b8a321964a4e2cae750847893473ab }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_2895fff8fcf3403fa72fe1cbfbbb9205 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0f9d0996442748848a86cd75990ed635 }}/przemyslawzagraniczny/ebiznes:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_92b8a321964a4e2cae750847893473ab }}/wentyl23/e_biznes_1.0:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'sklepgorski'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_192c9f86eded4bac8e14447d2daf2869 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0f9d0996442748848a86cd75990ed635 }}/przemyslawzagraniczny/ebiznes:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9e403b5bedcf4978adece59f853e8d8a }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_92b8a321964a4e2cae750847893473ab }}/wentyl23/e_biznes_1.0:${{ github.sha }}'
